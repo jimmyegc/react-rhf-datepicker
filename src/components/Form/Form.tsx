@@ -33,20 +33,7 @@ export const Form = () => {
   
   return (
     <form onSubmit={handleSubmit(onSubmit)}>   
-      <FormControl sx={{ m:3 }} error component="fieldset" variant="standard">
-        <FormControlLabel    
-          label="Jimmy"    
-          control={(
-            <Checkbox
-              inputRef={checkboxRef}
-              checked={checked}            
-              onChange={handleChange}
-              inputProps={{ 'aria-label': 'controlled' }}
-            />
-          )}
-        />
-        <FormHelperText>You can display an error</FormHelperText>
-      </FormControl>  
+       
    
       
 
