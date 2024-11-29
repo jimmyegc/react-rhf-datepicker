@@ -4,6 +4,7 @@ import { FloatingDiv } from './components/FloatingDiv/FloatingDiv';
 
 import { Form } from './components/Form/Form';
 import { FormCarSales } from './components/FormCarSales/FormCarSales';
+import { MyComponent } from './components/MyComponent/MyComponent';
 import { MyDynamicForm } from './components/MyDinamicForm/MyDinamicForm';
 
 function App() {
@@ -27,8 +28,9 @@ function App() {
         <h2>3. Sin usar React Hook Form</h2>
         <DatePickerForm useFormLibrary="none" onSubmit={handleFormSubmit} />
       </div> 
-      <MyDynamicForm /> */}
-      <FloatingDiv />
+      <MyDynamicForm />
+      <FloatingDiv /> */}
+      <MyComponent />
     </>
   )
 }
