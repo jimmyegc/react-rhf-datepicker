@@ -3,31 +3,13 @@ import './ErrorBoundary.css';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
-  onError?: (error: Error, errorInfo: React.ErrorInfo) => void;
+  fallback?: (error: Error, resetErrorBoundary: () => void) => ReactNode;
+  //onError?: (error: Error, errorInfo: React.ErrorInfo) => void;
 }
 
 interface ErrorBoundaryState {
   hasError: boolean;
   error: Error | null;
-}
-
-interface CustomError extends Error {
-  componentName: string; // Dónde ocurrió (e.g., 'LoginForm')
-  errorCode?: string;    // Código único para identificar el tipo de error
-  context?: Record<string, any>; // Información contextual relevante
-}
-
-function createError(
-  message: string,
-  componentName: string,
-  context?: Record<string, any>,
-  errorCode?: string
-): CustomError {
-  const error: CustomError = new Error(message) as CustomError;
-  error.componentName = componentName;
-  error.context = context;
-  error.errorCode = errorCode;
-  return error;
 }
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
@@ -40,9 +22,13 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     return { hasError: true, error };
   }
 
+  resetError = () => {
+    this.setState({ hasError: false, error: null });
+  };
+
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('ErrorBoundary atrapó un error:', error, errorInfo);
-  
+    /*        
     // Estructura para reportar errores al sistema de monitoreo
     const report = {
       message: error.message,
@@ -58,42 +44,18 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     if (this.props.onError) {
       this.props.onError(report, errorInfo);
     }
+    */
   }
 
-  resetError = () => {
-    this.setState({ hasError: false, error: null });
-  };
-
   render() {
-    if (this.state.hasError) {
-      return (
-        <div className="error-boundary">
-          <div className="error-boundary-container">
-            <img
-              src="https://via.placeholder.com/150"
-              alt="Error"
-              className="error-image"
-            />
-            <h1>¡Ups! Algo salió mal</h1>
-            <p>
-              Parece que ocurrió un problema inesperado. Por favor, intenta
-              nuevamente.
-            </p>
-            {this.state.error && (
-              <details className="error-details">
-                <summary>Detalles del error</summary>
-                <p>{this.state.error.message}</p>
-              </details>
-            )}
-            <button onClick={this.resetError} className="error-button">
-              Reintentar
-            </button>
-          </div>
-        </div>
-      );
+    const { hasError, error } = this.state;
+    const { fallback, children } = this.props;
+
+    if (hasError && error) {
+      return fallback ? fallback(error, this.resetError) : <div>Something went wrong!</div>;
     }
 
-    return this.props.children;
+    return children;
   }
 }
 

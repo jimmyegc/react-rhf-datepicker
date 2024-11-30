@@ -1,21 +1,16 @@
-import useErrorBoundary from "../ErrorBoundary/useErrorBoundary";
+import useErrorHandler from "../../hooks/useErrorHandler";
 
 export const MyComponent = () => {
-  const { throwError, createError } = useErrorBoundary();
+  const { createError, throwError } = useErrorHandler();
 
   const handleClick = () => {
-    try {
-      throw new Error('Error simulado para pruebas');
-    } catch (e) {
-      //throwError(error as Error);
-      const error = createError(
-        'Fallo al cargar los datos del usuario',
-        'UserProfile',
-        { userId: 123 },
-        'USER_FETCH_ERROR'
-      );
-      throwError(error);
-    }
+    const error = createError(
+      'Failed to load user data',
+      'UserProfile',
+      { userId: 123 },
+      'USER_LOAD_ERROR'
+    );
+    throwError(error);
   };
 
   return (
