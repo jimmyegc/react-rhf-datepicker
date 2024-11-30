@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import './App.css'
 import DatePickerForm from './components/DatePickerForm/DatePickerForm';
 import { FloatingDiv } from './components/FloatingDiv/FloatingDiv';
@@ -6,6 +7,16 @@ import { Form } from './components/Form/Form';
 import { FormCarSales } from './components/FormCarSales/FormCarSales';
 import { MyComponent } from './components/MyComponent/MyComponent';
 import { MyDynamicForm } from './components/MyDinamicForm/MyDinamicForm';
+
+
+const LazyComponent = lazy(() => import("./components/LazyLoadedComponent/LazyLoadedComponent.tsx"));
+
+
+const Fallback = () => (
+  <div style={{ textAlign: "center", marginTop: "50px", fontSize: "1.5rem" }}>
+    Cargando contenido...
+  </div>
+);
 
 function App() {
   const handleFormSubmit = (data) => {
@@ -29,8 +40,18 @@ function App() {
         <DatePickerForm useFormLibrary="none" onSubmit={handleFormSubmit} />
       </div> 
       <MyDynamicForm />
-      <FloatingDiv /> */}
+      <FloatingDiv />
       <MyComponent />
+ */}
+      <div style={{ fontFamily: "Arial, sans-serif", padding: "20px" }}>
+      <h1>Ejemplo de Lazy Loading en React</h1>
+      <p>El componente a continuación se carga de forma diferida:</p>
+
+      <Suspense fallback={<Fallback />}>
+        <LazyComponent />
+      </Suspense>
+    </div>
+
     </>
   )
 }
