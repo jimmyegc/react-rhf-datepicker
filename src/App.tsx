@@ -7,6 +7,7 @@ import { Form } from './components/Form/Form';
 import { FormCarSales } from './components/FormCarSales/FormCarSales';
 import { MyComponent } from './components/MyComponent/MyComponent';
 import { MyDynamicForm } from './components/MyDinamicForm/MyDinamicForm';
+import { DatePickerComponent } from './pages/DatePickerComponent/DatePickerComponent.tsx';
 
 
 const LazyComponent = lazy(() => import("./components/LazyLoadedComponent/LazyLoadedComponent.tsx"));
@@ -42,7 +43,7 @@ function App() {
       <MyDynamicForm />
       <FloatingDiv />
       <MyComponent />
- */}
+ 
       <div style={{ fontFamily: "Arial, sans-serif", padding: "20px" }}>
       <h1>Ejemplo de Lazy Loading en React</h1>
       <p>El componente a continuación se carga de forma diferida:</p>
@@ -50,7 +51,9 @@ function App() {
       <Suspense fallback={<Fallback />}>
         <LazyComponent />
       </Suspense>
-    </div>
+    </div>*/}
+
+    <DatePickerComponent />
 
     </>
   )
