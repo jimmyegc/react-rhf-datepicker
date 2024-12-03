@@ -40,20 +40,20 @@ function App() {
         <h2>3. Sin usar React Hook Form</h2>
         <DatePickerForm useFormLibrary="none" onSubmit={handleFormSubmit} />
       </div> 
-      <MyDynamicForm />
-      <FloatingDiv />
-      <MyComponent />
- 
-      <div style={{ fontFamily: "Arial, sans-serif", padding: "20px" }}>
+      <MyDynamicForm />      
+      
+ */}
+  <MyComponent />
+    <FloatingDiv />
+    <div style={{ fontFamily: "Arial, sans-serif", padding: "20px" }}>
       <h1>Ejemplo de Lazy Loading en React</h1>
       <p>El componente a continuación se carga de forma diferida:</p>
-
       <Suspense fallback={<Fallback />}>
         <LazyComponent />
       </Suspense>
-    </div>*/}
+    </div>
 
-    <DatePickerComponent />
+    {/* <DatePickerComponent /> */}
 
     </>
   )

@@ -218,8 +218,8 @@ export const DatePickerComponent = () => {
     handleInitial();
     //calculateBlockDays();
     //calculateEnabledDays();
-    setValue(objConf.internalName, birthday);
-    setStartDate(birthday);
+    setValue(objConf.internalName, tomorrow);
+    setStartDate(tomorrow);
     calculateFutureDates(new Date());
     /* if (objConf.isRequired) {
       register(`${objConf?.internalName}`, {

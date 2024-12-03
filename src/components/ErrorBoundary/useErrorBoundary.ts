@@ -20,7 +20,7 @@ const useErrorBoundary = (): UseErrorBoundaryReturn => {
 
   const throwError = useCallback((error: Error) => {
     setError(() => {
-      throw error; // Esto será capturado por el ErrorBoundary
+      throw error;
     });
   }, []);
 
